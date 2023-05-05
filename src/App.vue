@@ -1,12 +1,21 @@
 <template>
   <div class="app">
     <router-view />
+    <!-- 隐藏tabbar 1. 借助route的meta属性 -->
+    <!-- <tab-bar v-if="!route.meta.hideTabBar" /> -->
+    
+    <!-- 隐藏tabbar 2. 借助CSS的z-index -->
     <tab-bar />
   </div>
 </template>
 
 <script setup>
+
 import TabBar from '@/components/tab-bar/tab-bar.vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
 </script>
 
 <style scoped>
