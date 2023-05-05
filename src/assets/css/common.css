@@ -1,0 +1,10 @@
+:root {
+  --primary-color: #ff9854;
+
+  /* 全局修改: 在任何地方只要用到 van-tabbar-item-icon-size 都会被改掉 */
+  /* --van-tabbar-item-icon-size: 30px; */
+}
+
+body {
+  font-size: 14px;
+}
