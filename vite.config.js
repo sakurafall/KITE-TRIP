@@ -11,6 +11,7 @@ import { VantResolver } from 'unplugin-vue-components/resolvers';
 export default defineConfig({
   plugins: [
     vue(),
+    // vant UI 按需加载 配置
     Components({
       resolvers: [VantResolver()],
     }),
@@ -19,5 +20,10 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  // 定义ip地址和端口号 用于手机端预览
+  server: {
+    host: '192.168.0.2',
+    port: 5173
   }
 })
