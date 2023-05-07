@@ -1,5 +1,7 @@
 :root {
   --primary-color: #ff9854;
+  --gray-line: #f1f1f1;
+  --theme-linear-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
 
   /* 全局修改: 在任何地方只要用到 van-tabbar-item-icon-size 都会被改掉 */
   /* --van-tabbar-item-icon-size: 30px; */
@@ -18,4 +20,8 @@ body {
   height: 100vh;
   background: #fff;
   overflow-y: auto;
+}
+
+.bottom-gray-line {
+  border-bottom: 1px solid var(--gray-line);
 }
