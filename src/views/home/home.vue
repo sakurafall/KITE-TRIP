@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="homeRef">
     <home-nav-bar />
     <div class="banner">
       <img src="@/assets/img/home/banner.webp" alt="">
@@ -7,14 +7,20 @@
     <home-search-box />
     <home-categories />
     <div v-if="isShowSearchBar" class="search-bar">
-      <search-bar class="" />
+      <search-bar />
     </div>
     <home-content />
   </div>
 </template>
 
+<script>
+export default {
+  name: "home"
+}
+</script>
+
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onActivated, ref, watch } from 'vue'
 
 import useHomeStore from '@/stores/modules/home'
 import HomeNavBar from './cpns/home-nav-bar.vue'
@@ -50,7 +56,8 @@ homeStore.fetchHouseListData()
 // useScroll(() => {
 //   homeStore.fetchHouseListData()
 // })
-const { isReachBottom, scrollTop } = useScroll()
+const homeRef = ref()
+const { isReachBottom, scrollTop } = useScroll(homeRef)
 watch(isReachBottom, (newValue) => { // 监听到标识符变化的时候，执行js逻辑
   if (newValue) {
     homeStore.fetchHouseListData().then(() => {
@@ -69,11 +76,20 @@ const isShowSearchBar = computed(() => { // 定义的响应式数据, 依赖另�
 })
 
 
+onActivated(() => {
+  homeRef.value?.scrollTo({
+    top: scrollTop.value
+  })
+})
+
 </script>
 
 <style lang="less" scoped>
 .home {
+  height: 100vh;
   padding-bottom: 50px;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .banner {
